@@ -16,8 +16,12 @@ io.on("connection", (socket) => {
   socket.emit("user-connect", "welcome to our application");
 
   socket.on("send-message", (message) => {
-    socket.emit("message", "message send succesfully");
-    io.emit("message", message);
+    socket.emit("message", "message sent succesfully");
+    socket.broadcast.emit("message", message);
+  });
+
+  socket.on("disconnect", () => {
+    io.emit("message", "User disconnected");
   });
 });
 
