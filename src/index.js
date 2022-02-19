@@ -14,11 +14,11 @@ app.use(express.static(publicDirectoryPath));
 
 io.on("connection", (socket) => {
   socket.emit("user-connect", "welcome to our application");
-});
 
-io.on("message", (socket, data) => {
-  socket.emit("message", "message send succesfully");
-  io.emit("message", data);
+  socket.on("send-message", (message) => {
+    socket.emit("message", "message send succesfully");
+    io.emit("message", message);
+  });
 });
 
 server.listen(port, () => {
