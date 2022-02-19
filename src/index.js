@@ -15,12 +15,9 @@ app.use(express.static(publicDirectoryPath));
 io.on("connection", (socket) => {
   socket.emit("user-connect", "welcome to our application");
 
-  socket.on("send-message", (message) => {
-    socket.emit("message", () => {
-      console.log("something");
-    });
-    console.log(message);
-    // socket.broadcast.emit("message", message);
+  socket.on("send-message", (message, callback) => {
+    callback();
+    socket.broadcast.emit("message", message);
   });
 
   socket.on("disconnect", () => {
