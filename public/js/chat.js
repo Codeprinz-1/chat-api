@@ -1,6 +1,6 @@
 const socket = io();
 
-socket.on("connect", (data) => {
+socket.on("user-connect", (data) => {
   console.log(data);
 });
 
