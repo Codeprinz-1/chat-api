@@ -8,8 +8,10 @@ socket.on("message", (data) => {
   console.log(data);
 });
 
-const send = function () {
-  const text = document.getElementById("message").value;
+const send = function (e, target) {
+  e.preventDefault();
+
+  const text = target.elements.message.value;
   if (text) {
     socket.emit("send-message", text);
   }
