@@ -13,6 +13,9 @@ const send = function (e, target) {
 
   const text = target.elements.message.value;
   if (text) {
-    socket.emit("send-message", text);
+    socket.emit("send-message", text, (data) => {
+      console.log("the message was sent");
+      console.log(data);
+    });
   }
 };
