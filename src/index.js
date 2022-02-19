@@ -16,6 +16,11 @@ io.on("connection", (socket) => {
   socket.emit("user-connect", "welcome to our application");
 });
 
+io.on("message", (socket, data) => {
+  socket.emit("message", "message send succesfully");
+  io.emit("message", data);
+});
+
 server.listen(port, () => {
   console.log("Listening on port " + port);
 });
