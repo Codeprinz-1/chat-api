@@ -15,7 +15,6 @@ const send = function (e, target) {
   if (text) {
     socket.emit("send-message", text, (data) => {
       console.log("the message was sent");
-      console.log(data);
     });
   }
 };
