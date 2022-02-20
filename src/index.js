@@ -2,6 +2,7 @@ const express = require("express");
 const http = require("http");
 const path = require("path");
 const socketio = require("socket.io");
+const { generateMessage } = require("./utils/message.js");
 
 const app = express();
 const server = http.createServer(app);
@@ -17,7 +18,7 @@ io.on("connection", (socket) => {
 
   socket.on("send-message", (message, callback) => {
     callback();
-    socket.broadcast.emit("message", message);
+    socket.broadcast.emit("message", generateMessage(message));
   });
 
   socket.on("disconnect", () => {
