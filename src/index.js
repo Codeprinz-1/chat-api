@@ -21,6 +21,10 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("message", generateMessage(message));
   });
 
+  socket.on("join", ({ username, room }) => {
+    socket.join(room);
+  });
+
   socket.on("disconnect", () => {
     io.emit("message", "User disconnected");
   });
