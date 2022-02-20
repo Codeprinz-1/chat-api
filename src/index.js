@@ -35,7 +35,10 @@ io.on("connection", (socket) => {
     const user = removeUser(socket.id);
 
     if (user) {
-      io.emit("message", generateMessage(" A user has disconnected"));
+      io.to(user.room).emit(
+        "message",
+        generateMessage(`${user.name} has left the room`)
+      );
     }
   });
 });
