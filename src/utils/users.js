@@ -24,3 +24,11 @@ const addUser = ({ id, username, room }) => {
   users.push(user);
   return { user };
 };
+
+addUser({
+  id: 22,
+  username: "Prince",
+  room: "South Nigeria",
+});
+
+console.log(users);

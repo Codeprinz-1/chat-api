@@ -33,9 +33,3 @@ io.on("connection", (socket) => {
 server.listen(port, () => {
   console.log("Listening on port " + port);
 });
-
-addUser({
-  id: 22,
-  username: "Prince",
-  room: "South Nigeria",
-});
