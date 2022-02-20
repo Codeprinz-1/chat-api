@@ -4,7 +4,7 @@ const addUser = ({ id, username, room }) => {
   username = username.trim().toLowerCase();
   room = room.trim().toLowerCase();
 
-  if (!username || room) {
+  if (!username || !room) {
     return {
       errors: "username and room are required",
     };
@@ -24,6 +24,14 @@ const addUser = ({ id, username, room }) => {
   users.push(user);
   return { user };
 };
+
+console.log(
+  addUser({
+    id: 22,
+    username: "Prince",
+    room: "South Nigeria",
+  })
+);
 
 addUser({
   id: 22,
