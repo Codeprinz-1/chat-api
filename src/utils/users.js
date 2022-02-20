@@ -47,5 +47,8 @@ addUser({
   room: "South Nigeria",
 });
 
+const getUser = (id) => {
+  return users.find((user) => user.id === id);
+};
 console.log(removeUser(22));
 console.log(users);
