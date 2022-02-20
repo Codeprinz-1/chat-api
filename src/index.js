@@ -32,7 +32,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    removeUser(socket.id);
+    const user = removeUser(socket.id);
 
     io.emit("message", generateMessage(" A user has disconnected"));
   });
