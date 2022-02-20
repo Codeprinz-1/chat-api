@@ -3,7 +3,7 @@ const http = require("http");
 const path = require("path");
 const socketio = require("socket.io");
 const { generateMessage } = require("./utils/message.js");
-const { addUser } = require("./utils/users.js");
+const { addUser, removeUser } = require("./utils/users.js");
 
 const app = express();
 const server = http.createServer(app);
@@ -32,7 +32,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    io.emit("message", "User disconnected");
+    removeUser(socket.id);
+
+    io.emit("message", generateMessage(" A user has disconnected"));
   });
 });
 
