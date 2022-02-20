@@ -18,8 +18,8 @@ io.on("connection", (socket) => {
   socket.emit("user-connect", "welcome to our application");
 
   socket.on("send-message", (message, callback) => {
-    callback();
     socket.broadcast.emit("message", generateMessage(message));
+    callback();
   });
 
   socket.on("join", (options, callback) => {
@@ -29,6 +29,7 @@ io.on("connection", (socket) => {
       return callback(error);
     }
     socket.join(room);
+    callback();
   });
 
   socket.on("disconnect", () => {
