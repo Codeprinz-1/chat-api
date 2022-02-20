@@ -3,6 +3,7 @@ const http = require("http");
 const path = require("path");
 const socketio = require("socket.io");
 const { generateMessage } = require("./utils/message.js");
+const { addUser } = require("./utils/users.js");
 
 const app = express();
 const server = http.createServer(app);
@@ -21,7 +22,12 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("message", generateMessage(message));
   });
 
-  socket.on("join", ({ username, room }) => {
+  socket.on("join", ({ username, room }, callback) => {
+    const { error, users } = addUser({ id: socket.id, username, room });
+
+    if (error) {
+      return callback(error);
+    }
     socket.join(room);
   });
 
