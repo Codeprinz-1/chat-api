@@ -34,7 +34,9 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
 
-    io.emit("message", generateMessage(" A user has disconnected"));
+    if (user) {
+      io.emit("message", generateMessage(" A user has disconnected"));
+    }
   });
 });
 
